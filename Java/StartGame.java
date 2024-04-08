@@ -5,7 +5,7 @@ public class StartGame {
  * @param args : arguments passés lors de l'appel depuis une invite de commandes
  */
 	public static void main(String[] args) {
-		GraphiqueQuizz quiz = new GraphiqueQuizz(5, "palaumae");
+		GraphiqueQuizz quiz = new GraphiqueQuizz(5);
 		quiz.start();
 		quiz.displayResultats();
 	}

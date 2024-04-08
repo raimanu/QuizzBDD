@@ -12,8 +12,8 @@ public class GraphiqueQuizz {
 	private long timeElapsed;
 	private boolean done = false;
 	private int nbreQuestions;
-	Scanner clavier = new Scanner(System.in);
   Connection connection = null;
+  LectureInfosBDD lecture = new LectureInfosBDD();
 
   String[] questions;
   Question question;
@@ -24,10 +24,11 @@ public class GraphiqueQuizz {
 	 * @param nbreQuestion : Le nombre de questions � poser au joueur
    * Crée une connection avec une base de donnée PSQL
 	 */
-	public GraphiqueQuizz(int nbreQuestion, String password) {
+	public GraphiqueQuizz(int nbreQuestion) {
+    lecture.creationFichier();
     try {
       Class.forName("org.postgresql.Driver");
-      connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/quizz", "postgres", password);
+      connection = DriverManager.getConnection(lecture.getUrl()+lecture.getDbName(), lecture.getUsername(), lecture.getPassword());
       if (connection != null) {
         System.out.println("Connected to the database!");
       } else {
