@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -24,7 +26,7 @@ public class GraphiqueQuizz {
 	 * @param nbreQuestion : Le nombre de questions � poser au joueur
    * Crée une connection avec une base de donnée PSQL
 	 */
-	public GraphiqueQuizz(int nbreQuestion) {
+	public GraphiqueQuizz(int nbreQuestion) throws NoSuchAlgorithmException, IOException {
     lecture.creationFichier();
     try {
       Class.forName("org.postgresql.Driver");

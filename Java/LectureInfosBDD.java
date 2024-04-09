@@ -48,9 +48,9 @@ public class LectureInfosBDD {
 		ch.generateSecretKey();
 		// On y insère des paires [clé,valeur]
 		myProps.setProperty("dbName", ch.chiffrer("quizz"));
-		myProps.setProperty("url", ch.chiffrer("jdbc:mysql://localhost:3306/"));
-		myProps.setProperty("username", ch.chiffrer("root"));
-		myProps.setProperty("password", ch.chiffrer("SIO2022"));
+		myProps.setProperty("url", ch.chiffrer("jdbc:postgresql://localhost:5432/"));
+		myProps.setProperty("username", ch.chiffrer("postgres"));
+		myProps.setProperty("password", ch.chiffrer("palaumae"));
 		//On transforme la clé secrète en String via json
 		String encodedKey = Base64.getEncoder().encodeToString(ch.getMyDesKey().getEncoded());
 		myProps.setProperty("key", encodedKey);

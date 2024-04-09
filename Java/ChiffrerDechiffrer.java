@@ -1,4 +1,5 @@
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -17,14 +18,12 @@ public class ChiffrerDechiffrer {
 	public String chiffrer(String chaine) {
 		byte[] textEncrypted = null;
 		try {
-			// Fonction permettant de chiffrer
 			Cipher desCipher;
 			desCipher = Cipher.getInstance("DES");
 			byte[] text = chaine.getBytes("UTF8");
 			desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
 			textEncrypted = desCipher.doFinal(text);
-			chaine = new String(textEncrypted);
-			// System.out.println("chaine cryptée : " + chaine);
+			chaine = Base64.getEncoder().encodeToString(textEncrypted);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -42,9 +41,8 @@ public class ChiffrerDechiffrer {
 			Cipher desCipher;
 			desCipher = Cipher.getInstance("DES");
 			desCipher.init(Cipher.DECRYPT_MODE, myDesKey);
-			byte[] textDecrypted = desCipher.doFinal(chaine.getBytes());
+			byte[] textDecrypted = desCipher.doFinal(Base64.getDecoder().decode(chaine));
 			chaine = new String(textDecrypted);
-			// System.out.println("chaine decryptée : " + chaine);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
